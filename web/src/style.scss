@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+html {
+    font-size: 13px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.2em;
+    background-color: #f1f1f1;
+    -webkit-font-smooting: antialiased;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+// colors
+$colors: ("primary": #db9e3f,
+    "white": #fff,
+    "light": #f9f9f9,
+    "grey": #999,
+    "grey-1": #666,
+    "dark-1": #343440,
+    "dark": #222,
+    "black": #000,
+);
+
+@each $colorKey,
+$color in $colors {
+    .text-#{$colorKey} {
+        color: $color;
+    }
+
+    .bg-#{$colorKey} {
+        background-color: $color;
+    }
+}
+
+// text
+@each $var in (left, right, center) {
+    .text-#{$var} {
+        text-align: $var;
+    }
+}
+
+
+// font size
+$base-font-size: 1rem;
+$font-sizes: (xxs: 0.6154, // 8px
+    xs: 0.7692, // 10px
+    sm: 0.9231, // 12px
+    md: 1, // 13px
+    lg: 1.0769, // 14px
+    xl: 1.2308, // 16px
+);
+
+@each $sizeKey,
+$size in $font-sizes {
+    .fs-#{$sizeKey} {
+        font-size: $size * $base-font-size;
+    }
+}
+
+// flex
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+$flex-jc: (start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+);
+
+@each $key,
+$value in $flex-jc {
+    .jc-#{$key} {
+        justify-content: $value;
+    }
+}
+
+$flex-ai: (start: flex-start,
+    end: flex-end,
+    center: center,
+    stretch: stretch,
+);
+
+@each $key,
+$value in $flex-ai {
+    .ai-#{$key} {
+        align-items: $value;
+    }
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+
+// margin padding
+$spacing-types: (m: margin,
+    p: padding,
+);
+$spacing-directions: (t: top,
+    r: right,
+    b: bottom,
+    l: left,
+);
+$spacing-base-size: 1rem;
+$spacing-sizes: (0: 0,
+    1: 0.25,
+    2: 0.5,
+    3: 0.75,
+    4: 1,
+    5: 1.5,
+    6: 2,
+    7: 3,
+);
+
+// m-1...
+@each $key,
+$value in $spacing-types {
+
+    @each $key2,
+    $value2 in $spacing-sizes {
+        .#{$key}-#{$key2} {
+            #{$value}: $value2 * $spacing-base-size;
+        }
+    }
+}
+
+// mx-1...
+@each $key,
+$value in $spacing-types {
+
+    @each $key2,
+    $value2 in $spacing-sizes {
+        .#{$key}x-#{$key2} {
+            #{$value}-left: $value2 * $spacing-base-size;
+            #{$value}-right: $value2 * $spacing-base-size;
+        }
+
+        .#{$key}y-#{$key2} {
+            #{$value}-top: $value2 * $spacing-base-size;
+            #{$value}-bottom: $value2 * $spacing-base-size;
+        }
+    }
+}
+
+// mt-1...
+@each $key,
+$value in $spacing-types {
+
+    @each $key1,
+    $value1 in $spacing-directions {
+
+        @each $key2,
+        $value2 in $spacing-sizes {
+            .#{$key}#{$key1}-#{$key2} {
+                #{$value}-#{$value1}: $value2 * $spacing-base-size;
+            }
+        }
+    }
+}
+
+// button
+.btn {
+    border: none;
+    border-radius: 0.1538rem;
+    font-size: map-get($font-sizes, 'sm') * $base-font-size;
+    padding: 0.2rem 0.6rem;
+}
+
+// sprite 
+.sprite {
+    background: url(./assets/index.png) no-repeat 0 0;
+    background-size: 28.8462rem;
+    display: inline-block;
+
+    &.sprite-news {
+        background-position: 63.546% 15.517%;
+        width: 1.7692rem;
+        height: 1.5385rem;
+    }
+
+    &.sprite-packUp {
+        background-position: 38.577% 52.076%;
+        width: 1.4615rem;
+        height: 1.4615rem;
+    }
+}
+
+// active
+.active_1 {
+    color: #db9e3f;
+    border-bottom: 2px solid #db9e3f;
+}
